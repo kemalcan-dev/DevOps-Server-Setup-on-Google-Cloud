@@ -46,16 +46,16 @@ Creating the Server Environment Setup:
 
 6. Next will be adjusting the Ansible Hosts file:
    - First, we need to change our directory(cd) into the hidden directory "etc". We will do this by typing into the command line "cd /etc" and hitting enter. Then, typing in "ls" and enter, which will then show the list of all of the directories in the "etc" directory. In this case, we will be looking for the directory "ansible":
-    <img width="615" alt="Screenshot 2023-12-05 at 10 07 02 PM" src="https://github.com/tpflores09/CSC2510-001-FinalProject/assets/142537354/df8191f9-58c4-471d-bb12-f6111efe6a19">
+    <img width="615" alt="Screenshot 2023-12-05 at 10 07 02 PM" src="./images/11.png">
 
 
     - Once we locate the "ansible" directory, we will change to that directory by typing in the command line "cd ansible" and enter. We will type in "ls" to see the files. In this case, we want to locate the hosts file:
-    <img width="615" alt="Screenshot 2023-12-05 at 10 08 22 PM" src="./images/ae321e5d-40a0-494a-a19c-4d13ba8860e2">
+    <img width="615" alt="Screenshot 2023-12-05 at 10 08 22 PM" src="./images/13.png">
 
 
     - To access and edit this file, type in the command line "sudo nano hosts" and enter. Now, we need to add our WS and DBS to our hosts file. Throughout the hosts file are example of how to add in different hosts, or servers. Before we can connect our AM to our servers, we need to have written down the Internal IP address of the servers we want to connect to our AM. Once we have the Internal IP address, we can proceed.
     - Scrolling to the end of the hosts file, type in each of your groups with your Internal IP address as well as your root user and password, the IP and user in the screenshot are an example only(beware of the spaces):
-    <img width="613" alt="Screenshot 2023-12-05 at 10 13 13 PM" src="./images/ae321e5d-40a0-494a-a19c-4d13ba8860e2">
+    <img width="613" alt="Screenshot 2023-12-05 at 10 13 13 PM" src="./images/14.png">
 
 
     - Now that we have added our servers into the hosts file and added in our root user and password, we can use the keys "Control ^ + X", then "Y" for yes, and hit enter. This will save our edits into the hosts file, now connecting our Web Servers(WS) and Database Servers(DBS) to our Ansible Management Server(AM).
@@ -66,9 +66,9 @@ Creating the Server Environment Setup:
 7. Next, we will adjust the root login and hosts permissions for all of our VMs through our SSH. Repeat these steps as needed:
   - In the command line, type in "sudo nano /etc/ssh/sshd_config" and hit enter.
   - We need to locate 2 specific options in this file. First is "PermitRootLogin" needs to be changed from "no" to "yes". Second, the first "PasswordAuthentication yes" needs to be uncommented while the second "PasswordAuthentication no" needs to be commented out(#). Both options should end up looking like this:
-	<img width="616" alt="Screenshot 2023-12-05 at 10 17 22 PM" src="./images/ae321e5d-40a0-494a-a19c-4d13ba8860e2">
+	<img width="616" alt="Screenshot 2023-12-05 at 10 17 22 PM" src="./images/16.png">
 
-	<img width="616" alt="Screenshot 2023-12-05 at 10 18 17 PM" src="./images/ae321e5d-40a0-494a-a19c-4d13ba8860e2">
+	<img width="616" alt="Screenshot 2023-12-05 at 10 18 17 PM" src="./images/10.png">
 
 
   - Once you have made the changes, we can use the keys "Control ^ + X", then "Y" for yes, and hit enter to save the changes into the sshd_config file.
@@ -77,7 +77,7 @@ Creating the Server Environment Setup:
 
 Use the Ansible Playbooks to install packages(Apache, NodeJS, MariaDB) and to automate the deployment of a web application from a Git Repository through a shell script for each environment. 
 Before you begin, make a new directory by typing in the command line "mkdir ansible-playbooks". Then, "cd ansible-playbooks". Ensure that you have downloaded the attached files into the new directory:
-	<img width="575" alt="Screenshot 2023-12-05 at 11 46 40 PM" src="./images/ae321e5d-40a0-494a-a19c-4d13ba8860e2">
+	<img width="575" alt="Screenshot 2023-12-05 at 11 46 40 PM" src="./images/11.png">
 
 
 
@@ -89,8 +89,8 @@ Before you begin, make a new directory by typing in the command line "mkdir ansi
 - Configuring Cron Jobs:
 	1. Open the crontab for editing by running crontab -e.
 	2. Add cron job entries for your tasks. For example:
-	3. To run a script every minute: * * * * * /home/teperdomof42/ansible_playbooks/cronjob.sh
-	4. To update packages daily at midnight: 0 0 * * * ansible-playbook /home/teperdomof42/ansible_playbooks/updates.yml
+	3. To run a script every minute: * * * * * /home/ansible_playbooks/cronjob.sh
+	4. To update packages daily at midnight: 0 0 * * * ansible-playbook /home/ansible_playbooks/updates.yml
 	5.Save and exit the crontab editor.
 
 - Updating the Server Environment:
